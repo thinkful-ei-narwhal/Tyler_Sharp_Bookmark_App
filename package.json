@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server", 
+    "start": "webpack-dev-server",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/thinkful-ei-narwhal/Tyler_Sharp_Bookmark_App#readme",
   "dependencies": {
+    "cuid": "^2.1.8",
     "jquery": "^3.4.1"
   },
   "devDependencies": {
