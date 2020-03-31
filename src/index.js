@@ -42,13 +42,14 @@ function postAPI(BASE_URL, title, url, desc, rating) {
 //**HTML Functions**//
 function renderHTML(data) {
   let star = '\&#9733';
-  let htmlString = '<form class="bookmarks"><ol>';
+  let htmlString = '<form class="bookmarks"><ol class="list">';
   for (let i = 0; i < data.length; i++) {
-    htmlString += `<li><label for="title-${data[i].id}">Title</label>
+    htmlString += `<input class="edit" type="button" value="Edit" id="edit-${data[i].id}"></input>
+                  <li><label for="title-${data[i].id}">Title</label>
                   <input class="entry title" type="text" value="${data[i].title}" id="title-${data[i].id}" disabled></input>
                   <label for="url-${data[i].id}"></label>
                   <input class="entry url" type="url" id="url-${data[i].id}" value="${data[i].url}" disabled></input>
-                  <label for="desc-${data[i].id}">Description</label>
+                  <label for="desc-${data[i].id}" class="hidden">Description</label>
                   <input class="entry description hidden" type="text" id="desc-${data[i].id}" value="${data[i].desc}" disabled></input>
                   <label for="rating-${data[i].id}">Rating</label>
                     <select class="entry stars" name="ratings" id="rating-${data[i].id}" disabled>
@@ -60,7 +61,6 @@ function renderHTML(data) {
                       <option value="5">${star}${star}${star}${star}${star}</option>
                     </select>
                   <input class="goBtn" type="button" value="Go!" onclick="window.open('${data[i].url}')" id="go-${data[i].id}"></input>
-                  <input class="edit" type="button" value="Edit" id="edit-${data[i].id}"></input>
                   </li>`;
   }
   htmlString += '</ol></form>';
@@ -76,11 +76,13 @@ function renderHTML(data) {
 // }
 
 //**Buttons**//
-// function editBtn() {
-//   console.log('Edit clicked!');
-//   //$('.entry').removeAttr('disabled');
+function editBtn() {
+  event.preventDefault();
+  //let editLi = event.currentTarget.querySelector('li');
+  $(this).children('.entry').removeAttr('disabled');
+  //$('.entry').removeAttr('disabled');
   
-// }
+}
 
 
 //postAPI(BASE_URL, "Yahoo", "http://yahoo.com")
@@ -93,12 +95,9 @@ function main() {
 
 
 $(document).ready(function() {
-  console.log('Jquery ready!');
-  $('.edit').click( function() {
-     console.log('edit clicked!');
-    // $('.edit').click();
-    // console.log('Edit clicked!');
+  main();
+  $('.bookmark-list').on('click', '.edit', function() {
+    editBtn();
   });
 });
 
-main();
