@@ -8,3 +8,7 @@ body {
 .hidden {
     display: none;
 }
+
+.collapsed {
+    display: none;
+}
