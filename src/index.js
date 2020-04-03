@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import css from './index.css';
-import cuid from 'cuid';
 
 //*****API.js Module*****//
 
@@ -56,14 +55,15 @@ function generateHome() {
 function generateAddEntry() {
   return `<form class="new-entry">
           <label for="new-title">Title</label>
-          <input class="new title" type="text" placeholder="Title" id="new-title" required></input>
+          <input class="new title" type="text" placeholder="Title" id="new-title"></input>
           <label for="new-url">Link</label>
-          <input class="new url" type="text" placeholder="http://url.com" id="new-url" required></input>
+          <input class="new url" type="text" placeholder="http://url.com" id="new-url"></input>
           <label for="new-desc">Description</label>
           <input class="new description" type="text" placeholder="Describe the site." id="new-desc"></input>
           <label for="new-rating">Rating</label>
           <input class="new rating" type="number" placeholder="5" id="new-rating"></input>
-          <input class="submit" type="submit" value="Add" id="new-submit"></input>`;
+          <input class="submit" type="submit" value="Add" id="new-submit"></input>
+          </form>`;
 }
 
 function renderHTML(data) {
@@ -75,7 +75,7 @@ function renderHTML(data) {
     if (!data[i].desc) {
       data[i].desc = 'No description provided';
     }
-    let star = "&#9733"
+    let star = '&#9733';
     let ratingString = star.repeat(data[i].rating);
     htmlString += `
                   <li><label for="title-${data[i].id}" class="l-title">Title</label>
@@ -97,6 +97,16 @@ function renderHTML(data) {
   $('.bookmark-list').append(htmlString);
 }
 
+function filter(num) {
+  let test = $('.bookmark-list').find('.rating').val();
+  console.log(test);
+}
+
+function filterListener() {
+  $('.nav').on('change', 'select', function() {
+    filter($(this).val());
+  });
+}
 
 //**Event Listeners **//
 function addListener() {
@@ -244,6 +254,7 @@ $(document).ready(function() {
   getApi(BASE_URL);
   addListener();
   submitListener();
+  filterListener();
   expandListener();
   editListener();
   saveListener();

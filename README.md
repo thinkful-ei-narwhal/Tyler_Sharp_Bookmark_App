@@ -32,3 +32,4 @@ TO DO:
 Add filter functionality
 Handle POST/PATCH errors
 CSS
+Modularize
