@@ -9,6 +9,7 @@ const BASE_URL = 'https://thinkful-list-api.herokuapp.com/tylersharp/bookmarks/'
 //*****Store.js Module*****//
 //GET List
 function getApi(BASE_URL) {
+  $('.bookmark-list').html('');
   fetch(BASE_URL)
     .then(res => res.json())
     .then(data => data.length === 0 ? generateHome() : renderHTML(data));
@@ -55,9 +56,9 @@ function generateHome() {
 function generateAddEntry() {
   return `<form class="new-entry">
           <label for="new-title">Title</label>
-          <input class="new title" type="text" placeholder="Title" id="new-title"></input>
+          <input class="new title" type="text" placeholder="Title" id="new-title" required></input>
           <label for="new-url">Link</label>
-          <input class="new url" type="text" placeholder="http://url.com" id="new-url"></input>
+          <input class="new url" type="text" placeholder="http://url.com" id="new-url" required></input>
           <label for="new-desc">Description</label>
           <input class="new description" type="text" placeholder="Describe the site." id="new-desc"></input>
           <label for="new-rating">Rating</label>
@@ -74,15 +75,17 @@ function renderHTML(data) {
     if (!data[i].desc) {
       data[i].desc = 'No description provided';
     }
+    let star = "&#9733"
+    let ratingString = star.repeat(data[i].rating);
     htmlString += `
                   <li><label for="title-${data[i].id}" class="l-title">Title</label>
-                  <input class="entry title" type="text" value="${data[i].title}" id="${data[i].id}" disabled></input>
+                  <input class="entry title" type="text" value="${data[i].title}" id="${data[i].id}" required disabled></input>
                   <label for="url-${data[i].id}"></label>
-                  <input class="entry url" type="url" id="url-${data[i].id}" value="${data[i].url}" disabled></input>
+                  <input class="entry url" type="url" id="url-${data[i].id}" value="${data[i].url}" required disabled></input>
                   <label for="desc-${data[i].id}" class="description collapsed">Description</label>
                   <input class="entry input-desc description collapsed" type="text" id="desc-${data[i].id}" value="${data[i].desc}" disabled></input>
-                  <label for="rating-${data[i].id}">Rating</label>
-                  <input class="entry rating" type="number" min="1" max="5" value="${data[i].rating}" disabled></input>
+                  <label for="rating-${data[i].id}" class="go-edit">${ratingString}</label>
+                  <input class="entry go-edit hidden rating" type="number" min="1" max="5" value="${data[i].rating}" id="rating-${data[i].id}"></input>
                   <input class="btn description collapsed go" type="button" value="Go!" onclick="window.open('${data[i].url}')" id="go-${data[i].id}"></input>
                   <input class="btn go-edit edit" type="button" value="Edit" id="edit-${data[i].id}"></input>
                   <input class="btn cancel save-cancel hidden" type="button" value="Cancel" id="cancel-${data[i].id}"</input>
@@ -172,7 +175,7 @@ function submitBtn() {
   //Giving the user some visual feedback
   alert('Bookmark added!');
   //generate screen again to reflect changes
-  window.location.reload(true);
+  getApi(BASE_URL);
 }
 
 function editBtn() {
@@ -217,12 +220,12 @@ function saveBtn() {
   //Alert so user confirms their click
   alert('Bookmark updated!');
   //generate screen again to reflect changes
-  window.location.reload(true);
+  getApi(BASE_URL);
 }
 
 function cancelBtn() {
   event.preventDefault();
-  window.location.reload(true);
+  getApi(BASE_URL);
 }
 
 function removeBtn() {
@@ -231,7 +234,7 @@ function removeBtn() {
     let id = $(event.target).parent().find('.title').attr('id');
     deleteAPI(BASE_URL, id);
     alert('Bookmark deleted!');
-    window.location.reload(true);
+    getApi(BASE_URL);
   }
 }
 

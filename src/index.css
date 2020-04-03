@@ -5,6 +5,10 @@ body {
     align-items: center;
 }
 
+.mainWindow {
+    
+}
+
 .hidden {
     display: none;
 }

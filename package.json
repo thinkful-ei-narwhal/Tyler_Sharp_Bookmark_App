@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/thinkful-ei-narwhal/Tyler_Sharp_Bookmark_App#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "cuid": "^2.1.8",
     "jquery": "^3.4.1"
   },

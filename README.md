@@ -29,6 +29,6 @@ Check all validations in the API documentation (e.g. title and url field require
 
 TO DO:
 
-Add a filter
-Make the ratings into stars or something fun
+Add filter functionality
+Handle POST/PATCH errors
 CSS
