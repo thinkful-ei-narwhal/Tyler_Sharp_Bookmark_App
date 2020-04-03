@@ -98,8 +98,17 @@ function renderHTML(data) {
 }
 
 function filter(num) {
-  let test = $('.bookmark-list').find('.rating').val();
-  console.log(test);
+  $('li').each(function(){ 
+    if ($(this).find('input[type="number"]').val() < num) {
+      if (!$(this).hasClass('hidden')) {
+        $(this).toggleClass('hidden');
+      }
+    } else if ($(this).find('input[type="number"]').val() >= num) {
+      if ($(this).hasClass('hidden')) {
+        $(this).toggleClass('hidden');
+      }
+    }
+  });
 }
 
 function filterListener() {
@@ -186,6 +195,7 @@ function submitBtn() {
   alert('Bookmark added!');
   //generate screen again to reflect changes
   getApi(BASE_URL);
+  $('.new-entry').remove();
 }
 
 function editBtn() {
