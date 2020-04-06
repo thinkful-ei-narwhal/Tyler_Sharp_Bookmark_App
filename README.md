@@ -29,7 +29,5 @@ Check all validations in the API documentation (e.g. title and url field require
 
 TO DO:
 
-Add filter functionality
 Handle POST/PATCH errors
 CSS
-Modularize
