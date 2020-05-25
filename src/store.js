@@ -1,10 +1,12 @@
-import cuid from 'cuid';
+const cuid = require("cuid");
 const store = [
   {
     id: cuid(),
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     rating: 0,
-    expanded: false
-  } 
+    expanded: false,
+  },
 ];
+
+module.exports = store;

@@ -32,7 +32,7 @@ input[type="url"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 200px;
+  padding: 3em 1em 1em 1em;
   background-color: #618685;
   margin: 1em;
 }
