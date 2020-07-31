@@ -18,7 +18,11 @@
 .star-rating {
   background-color: rgba(179, 177, 177, 0.829);
   width: 55%;
-  margin: 1em;
+  display: flex;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 legend {
@@ -107,4 +111,11 @@ p {
 .edit-bookmark-btn:hover,
 .delete-bookmark-btn:hover {
   border: 1px solid red;
+}
+
+@media only screen and (min-width: 800px) {
+  .star-rating {
+    display: block;
+    text-align: center;
+  }
 }
