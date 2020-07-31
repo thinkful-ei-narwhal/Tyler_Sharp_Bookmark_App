@@ -6,7 +6,7 @@ module.exports = {
     path: __dirname + "/public",
     filename: "index_bundle.js",
   },
-  mode: "production",
+  mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
