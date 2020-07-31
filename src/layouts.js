@@ -1,5 +1,6 @@
 const generateHome = (bookmarks) => {
   return `
+  <nav class="nav">
   <button class="add-bookmark-btn">
     <span>Add Bookmark</span>
   </button>
@@ -15,6 +16,7 @@ const generateHome = (bookmarks) => {
         </select>
     </fieldset>
   </form>
+  </nav>
   <ul class="bookmark-list">
     ${bookmarks}
   </ul>`;
@@ -88,29 +90,30 @@ const generateEditFields = (id) => {
 
 const generateAddBookmarkForm = () => {
   return `
-  <form class="add-bookmark-form">
+  <form class="add-bookmark-form" id="#new-form">
       <fieldset class="input-info">
         <legend>Add a Bookmark</legend>
         <label for="bookmark-title">Title</label>
-        <input type="text" name="bookmark-inputs" id="bookmark-title" placeholder="type here...  " required>
+        <input type="text" name="bookmark-inputs" id="bookmark-title" placeholder="type here...  " required />
         <label for="bookmark-url">Enter a URL</label>
-        <input type="url" name="bookmark-inputs" id="bookmark-url" placeholder="include 'https' and '.com'" required>
+        <input type="url" name="bookmark-inputs" id="bookmark-url" placeholder="include 'https' and '.com'" required />
         <label for="bookmark-desc">Enter a description</label>
         <textarea id="bookmark-desc" cols="39" rows="5" placeholder="Enter a brief description..." style="resize:none"></textarea>
       </fieldset>
       <fieldset class="star-rating">       
-        <input type="radio" id="five-stars" name="stars" value="5">
-        <label for="five-stars">5</label>
-        <input type="radio" id="four-stars" name="stars" value="4">
-        <label for="four-stars">4</label>
-        <input type="radio" id="three-stars" name="stars" value="3" checked="checked" required>
-        <label for="three-stars">3</label>
-        <input type="radio" id="two-stars" name="stars" value="2">
-        <label for="two-stars">2</label>
-        <input type="radio" id="one-star" name="stars" value="1">
-        <label for="one-star">1</label>
+            <input type="radio" id="five-stars" name="stars" value="5">
+            <label for="five-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</label>
+            <input type="radio" id="four-stars" name="stars" value="4">
+            <label for="four-stars">&#9733;&#9733;&#9733;&#9733;</label>
+            <input type="radio" id="three-stars" name="stars" value="3" checked="checked" required>
+            <label for="three-stars">&#9733;&#9733;&#9733;</label>
+            <input type="radio" id="two-stars" name="stars" value="2">
+            <label for="two-stars">&#9733;&#9733;</label>
+            <input type="radio" id="one-star" name="stars" value="1">
+            <label for="one-star">&#9733;</label>
       </fieldset>
-      <button class="add-bookmark-btn">
+      <div class="error-div"></div>
+      <button class="add-btn" id="add-add">
         <span>Add Bookmark</span>
       </button>
     </form>`;

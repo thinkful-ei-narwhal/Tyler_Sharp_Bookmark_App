@@ -12,17 +12,18 @@ function findAndDelete(id) {
   this.bookmarks = this.bookmarks.filter((item) => item.id !== id);
 }
 
-async function updateBm(id, desc, rating) {
-  const bmToEdit = this.findById(id);
-  bmToEdit.desc = desc;
-  bmToEdit.rating = rating;
-  await findAndDelete(id).then((res) =>
-    res.ok ? this.bookmarks.push(bmToEdit) : res.error
-  );
-}
-
 function addItem(itemName) {
   this.bookmarks.push(itemName);
+}
+
+function updateBm(id, desc, rating) {
+  for (let i = 0; i < bookmarks.length; i++) {
+    if (bookmarks[i].id === id) {
+      bookmarks[i].desc = desc;
+      bookmarks[i].rating = rating;
+      break;
+    }
+  }
 }
 
 function filterList(rating) {

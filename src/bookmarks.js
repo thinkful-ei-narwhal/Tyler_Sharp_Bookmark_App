@@ -11,14 +11,12 @@ const handleAddBookmarkButton = () => {
 };
 
 const handleAddBookmarkForm = () => {
-  $("main").submit(".add-bookmark-form", (event) => {
-    alert("clicked!");
+  $("main").submit("#new-form", (event) => {
     event.preventDefault();
     const title = $("#bookmark-title").val();
     const url = $("#bookmark-url").val();
     const desc = $("#bookmark-desc").val();
     const rating = $("input[name='stars']:checked").val();
-
     api.createItem(title, url, desc, rating).then((newItem) => {
       store.addItem(newItem);
       render();
@@ -66,15 +64,20 @@ const handleEditBookmark = () => {
 };
 
 const handleEditSubmit = () => {
-  $("main").submit("edit-bookmark-form", (event) => {
+  $("main").on("click", ".edit-bookmark-form-btn", (event) => {
     event.preventDefault();
     let id = getItemIdFromElement(event.target);
-    const desc = $(`#edit-bookmark-desc-${id}`).val();
+    let desc = $(`#edit-bookmark-desc-${id}`).val();
     const rating = $("input[name='stars']:checked").val();
+    if (desc.length === 0) {
+      desc = "Add a new description";
+    }
     api
       .patchItem(id, desc, rating)
-      .then(() => store.updateBm(id, desc, rating))
-      .then((res) => (res.ok ? render() : console.log(res.error)));
+      .then(() => {
+        store.updateBm(id, desc, rating);
+      })
+      .then(() => render());
   });
 };
 
